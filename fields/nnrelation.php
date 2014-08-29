@@ -35,19 +35,23 @@ class F0FFormFieldNnrelation extends F0FFormFieldList
 			$options[] = JHtmlSelect::option($value->$key_field, $value->title);
 		}
 
-		// Create an instance of the correct table and load this item
-		$table = F0FTable::getInstance($view_prefix, $component_prefix . 'Table');
-
-		// Load the instance of this item, based on ID query parameter
-		$table->load($input->getInt('id'));
-
-		// Get the relation
-		$relation = $table->getRelations()->getMultiple($relation_name);
-
-		// Add existent relation as default selected values on list
-		foreach ($relation as $item)
+		// Don't load selected values if item is new
+		if ($id = $input->getInt('id'))
 		{
-			$this->value[] = $item->getId();
+			// Create an instance of the correct table and load this item
+			$table = F0FTable::getInstance($view_prefix, $component_prefix . 'Table');
+
+			// Load the instance of this item, based on ID query parameter
+			$table->load($id);
+
+			// Get the relation
+			$relation = $table->getRelations()->getMultiple($relation_name);
+
+			// Add existent relation as default selected values on list
+			foreach ($relation as $item)
+			{
+				$this->value[] = $item->getId();
+			}
 		}
 
 		return $options;
@@ -108,7 +112,7 @@ class F0FFormFieldNnrelation extends F0FFormFieldList
 	 *
 	 * @return string The replaced URL.
 	 */
-	private function getReplacedPlaceholders($url, F0FTable $table)
+	private function getReplacedPlaceholders($url, F0FTable &$table)
 	{
 		// Ask to table which are the fields to replace
 		$fields = $table->getKnownFields();
