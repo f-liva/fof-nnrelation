@@ -6,8 +6,6 @@
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU General Public License, version 2
  */
 
-namespace FOFNnRelations\F0FModelBehaviorNnrelation;
-
 defined('_JEXEC') or die;
 
 class F0FModelBehaviorNnrelation extends F0FModelBehavior
