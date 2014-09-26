@@ -1,0 +1,7 @@
+{
+	"name"       : "fede91it/fof-nnrelation",
+	"description": "FOF (Framework on Framework) support for many-to-many relations.",
+	"require"    : {
+		"php": ">=5.3.0"
+	}
+}
