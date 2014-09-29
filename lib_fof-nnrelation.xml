@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="library"
+           version="3.0"
+           method="upgrade">
+	<name>F0F NN-Relation</name>
+	<libraryname>fof-nnrelation</libraryname>
+	<description>F0F (Framework on Framework) support for many-to-many relations.</description>
+	<creationDate>29 September 2014</creationDate>
+	<author>Federico Liva</author>
+	<authorEmail>hello@federicoliva.info</authorEmail>
+	<authorUrl>http://www.federicoliva.info</authorUrl>
+	<copyright>(C) 2014 Federico Liva</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<version>1.0.0</version>
+	<packager>Federico Liva</packager>
+	<packagerurl>https://www.federicoliva.info</packagerurl>
+
+	<files>
+		<folder>fields</folder>
+		<folder>models</folder>
+		<folder>tables</folder>
+		<filename>index.html</filename>
+	</files>
+</extension>
