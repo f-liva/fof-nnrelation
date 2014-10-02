@@ -3,7 +3,7 @@
            version="3.0"
            method="upgrade">
 	<name>F0F NN-Relation</name>
-	<libraryname>fof-nnrelation</libraryname>
+	<libraryname>f0f-nnrelation</libraryname>
 	<description>F0F (Framework on Framework) support for many-to-many relations.</description>
 	<creationDate>29 September 2014</creationDate>
 	<author>Federico Liva</author>
