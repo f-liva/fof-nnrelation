@@ -90,7 +90,7 @@ class F0FFormFieldNnrelation extends F0FFormFieldList
 					$markup = '<a class="%s" href="' . JRoute::_($url) . '">%s</a>';
 				}
 
-				array_push($results, sprintf($markup, $class, $item->get('title')));
+				array_push($results, sprintf($markup, $class, $item->get($item->getColumnAlias('title'))));
 			}
 
 			// Join all html segments
