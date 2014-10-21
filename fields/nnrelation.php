@@ -26,13 +26,15 @@ class F0FFormFieldNnrelation extends F0FFormFieldList
 		// Create a relation's model instance
 		$relation_model = F0FModel::getTmpInstance(ucfirst($relation_name), $component_prefix . 'Model');
 
-		// Get the name of key field
-		$key_field = $relation_model->getTable()->getKeyName();
+		// Get the name of key and title field
+		$table 		= $relation_model->getTable();
+		$key_field 	= $table->getKeyName();
+		$value_field 	= $table->getColumnAlias('title');
 
 		// List all items from the referred table
 		foreach ($relation_model->getItemList(true) as $value)
 		{
-			$options[] = JHtmlSelect::option($value->$key_field, $value->title);
+			$options[] = JHtmlSelect::option($value->$key_field, $value->$value_field);
 		}
 
 		// Don't load selected values if item is new
