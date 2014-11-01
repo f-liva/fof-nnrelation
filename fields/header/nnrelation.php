@@ -1,6 +1,12 @@
 <?php
+    /**
+     * @package   FOF NNRelations
+     * @author    Federico Liva <mail@federicoliva.info>
+     * @copyright Copyright (C) 2014 Federico Liva
+     * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU General Public License, version 2
+     */
 
-// Protect from unauthorized access
+    // Protect from unauthorized access
     defined('F0F_INCLUDED') or die;
 
     class F0FFormHeaderNnrelation extends F0FFormHeaderField
