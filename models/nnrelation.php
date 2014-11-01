@@ -20,8 +20,8 @@ class F0FModelBehaviorNnrelation extends F0FModelBehavior
 	{
 		// Import relative table behavior to use normalise parameters
 		$input = new F0FInput;
-		JLoader::import('F0FTableBehaviorNnrelation', JPATH_ADMINISTRATOR . '/components/' . $input->getString('option') . '/tables/behaviors');
-		JLoader::import('F0FTableBehaviorNnrelation', JPATH_SITE . '/components/' . $input->getString('option') . '/tables/behaviors');
+		$loadet = JLoader::import('F0FTableBehaviorNnrelation', JPATH_ADMINISTRATOR . '/components/' . $input->getString('option') . '/tables/behaviors');
+		$loadet2 = JLoader::import('F0FTableBehaviorNnrelation', JPATH_SITE . '/components/' . $input->getString('option') . '/tables/behaviors');
 
 		// Retrieve the relations configuration for this table
 		$table     = $model->getTable();
@@ -36,9 +36,10 @@ class F0FModelBehaviorNnrelation extends F0FModelBehavior
 				// Normalise parameters like on behaviors
 				F0FTableBehaviorNnrelation::normaliseParameters($relation, $table);
 
-				// Retrieve the filter for this relation (singular name of relation's one)
-				$filter_name        = F0FInflector::singularize($relation['itemName']);
-				$model_filter_value = $model->getState($filter_name);
+
+                // Model only save $table->getKnownFields as state, so we look into the input
+                $filter_name        = $relation['itemName'];
+                $model_filter_value = $input->getCmd($filter_name);
 
 				// Build the conditions based on relation configuration
 				if (!empty($model_filter_value))
