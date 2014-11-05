@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="build">
+    <target name="prepare">
+        <if>
+            <available file="./dist"/>
+            <then>
+                <echo message="Removing old build ..."/>
+                <delete dir="./dist"/>
+            </then>
+        </if>
+        <echo message="Building dist directory ..."/>
+        <mkdir dir="./dist"/>
+    </target>
+
+    <target name="build" depends="prepare">
+        <echo message="Creating the library package ..."/>
+        <tar destfile="./dist/lib_f0f-nnrelation.tar.gz"
+             compression="gzip"
+             basedir="./library">
+        </tar>
+    </target>
+</project>
