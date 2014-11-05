@@ -1,12 +1,12 @@
 <?php
 /**
- * @package   FOF NNRelations
+ * @package   FOF NNRelation
  * @author    Federico Liva <mail@federicoliva.info>
  * @copyright Copyright (C) 2014 Federico Liva
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU General Public License, version 2
  */
 
-defined('_JEXEC') or die;
+defined('F0F_INCLUDED') or die;
 
 class F0FFormFieldNnrelation extends F0FFormFieldList
 {
@@ -27,9 +27,9 @@ class F0FFormFieldNnrelation extends F0FFormFieldList
 		$relation_model = F0FModel::getTmpInstance(ucfirst($relation_name), $component_prefix . 'Model');
 
 		// Get the name of key and title field
-		$table 		= $relation_model->getTable();
-		$key_field 	= $table->getKeyName();
-		$value_field 	= $table->getColumnAlias('title');
+		$table       = $relation_model->getTable();
+		$key_field   = $table->getKeyName();
+		$value_field = $table->getColumnAlias('title');
 
 		// List all items from the referred table
 		foreach ($relation_model->getItemList(true) as $value)

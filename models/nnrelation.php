@@ -1,12 +1,12 @@
 <?php
 /**
- * @package   FOF NNRelations
+ * @package   FOF NNRelation
  * @author    Federico Liva <mail@federicoliva.info>
  * @copyright Copyright (C) 2014 Federico Liva
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU General Public License, version 2
  */
 
-defined('_JEXEC') or die;
+defined('F0F_INCLUDED') or die;
 
 class F0FModelBehaviorNnrelation extends F0FModelBehavior
 {
@@ -19,8 +19,8 @@ class F0FModelBehaviorNnrelation extends F0FModelBehavior
 	public function onAfterBuildQuery(&$model, &$query)
 	{
 		// Import relative table behavior to use normalise parameters
-		$input = new F0FInput;
-		$loadet = JLoader::import('F0FTableBehaviorNnrelation', JPATH_ADMINISTRATOR . '/components/' . $input->getString('option') . '/tables/behaviors');
+		$input   = new F0FInput;
+		$loadet  = JLoader::import('F0FTableBehaviorNnrelation', JPATH_ADMINISTRATOR . '/components/' . $input->getString('option') . '/tables/behaviors');
 		$loadet2 = JLoader::import('F0FTableBehaviorNnrelation', JPATH_SITE . '/components/' . $input->getString('option') . '/tables/behaviors');
 
 		// Retrieve the relations configuration for this table
@@ -37,9 +37,9 @@ class F0FModelBehaviorNnrelation extends F0FModelBehavior
 				F0FTableBehaviorNnrelation::normaliseParameters($relation, $table);
 
 
-                // Model only save $table->getKnownFields as state, so we look into the input
-                $filter_name        = $relation['itemName'];
-                $model_filter_value = $input->getCmd($filter_name);
+				// Model only save $table->getKnownFields as state, so we look into the input
+				$filter_name        = $relation['itemName'];
+				$model_filter_value = $input->getCmd($filter_name);
 
 				// Build the conditions based on relation configuration
 				if (!empty($model_filter_value))
