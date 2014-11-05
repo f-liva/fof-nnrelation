@@ -62,39 +62,29 @@ class F0FTableBehaviorNnrelation extends F0FTableBehavior
 					->loadAssocList();
 
 				// Find new couples and create its
-//				$create_couples = array();
-
 				foreach ($new_couples as $couple)
 				{
 					if (!in_array($couple, $existent_couples))
 					{
-//						$create_couples[] = $couple;
-
 						$query = $table->getDbo()
 							->getQuery(true)
 							->insert($relation['pivotTable'])
 							->columns($relation['ourPivotKey'] . ', ' . $relation['theirPivotKey'])
 							->values($couple[$relation['ourPivotKey']] . ', ' . $couple[$relation['theirPivotKey']]);
 
-//						die($query->__toString());
-
 						// Use database to create the new record
 						if (!$table->getDbo()->setQuery($query)->execute())
 						{
-							throw new Exception('ERROREEEEEE 1'); // todo sistemare
+							throw new Exception('Can\'t create the relation for the ' . $relation['pivotTable'] . ' table');
 						}
 					}
 				}
 
 				// Now find the couples no more present, that will be deleted
-//				$delete_couples = array();
-
 				foreach ($existent_couples as $couple)
 				{
 					if (!in_array($couple, $new_couples))
 					{
-//						$delete_couples[] = $couple;
-
 						$query = $table->getDbo()
 							->getQuery(true)
 							->delete($relation['pivotTable'])
@@ -104,15 +94,10 @@ class F0FTableBehaviorNnrelation extends F0FTableBehavior
 						// Use database to create the new record
 						if (!$table->getDbo()->setQuery($query)->execute())
 						{
-							throw new Exception('ERROREEEEEE 2'); // todo sistemare
+							throw new Exception('Can\'t delete the relation for the ' . $relation['pivotTable'] . ' table');
 						}
 					}
 				}
-
-//				Kint::dump($new_couples);
-//				Kint::dump($existent_couples);
-//				Kint::dump($create_couples);
-//				Kint::dump($delete_couples);
 			}
 		}
 
