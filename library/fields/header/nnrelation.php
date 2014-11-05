@@ -18,9 +18,9 @@ class F0FFormHeaderNnrelation extends F0FFormHeaderField
 	 */
 	protected function getOptions()
 	{
-		// Fieldoptions: title translate and show how much related items
+		// Field options: title translate and show how much related items
 		$countAndShowRelated = ((string) $this->element['countAndShowRelated'] == 'true');
-		$translateTitle      = ((string) $this->element['translateTitel'] == 'true'); //todo fix the attribute name
+		$translateTitle      = ((string) $this->element['translateTitle'] == 'true');
 
 		$table = $this->form->getModel()->getTable();
 
