@@ -20,16 +20,17 @@ class F0FFormHeaderNnrelation extends F0FFormHeaderField
 	{
 		// Fieldoptions: title translate and show how much related items
 		$countAndShowRelated = ((string) $this->element['countAndShowRelated'] == 'true');
-		$translateTitle      = ((string) $this->element['translateTitel'] == 'true');
+		$translateTitle      = ((string) $this->element['translateTitel'] == 'true'); //todo fix the attribute name
 
 		$table = $this->form->getModel()->getTable();
 
-		// Get relationdefinitions from fof.xml
+		// Get relation definitions from fof.xml
 		$key       = $table->getConfigProviderKey() . '.relations';
 		$relations = $table->getConfigProvider()->get($key, array());
 
 		// Get the relation type:
 		$relationType = '';
+
 		foreach ($relations as $relation)
 		{
 			if ($relation['itemName'] == $this->name)
@@ -38,7 +39,6 @@ class F0FFormHeaderNnrelation extends F0FFormHeaderField
 				break;
 			}
 		}
-
 
 		// Get full relation definitions from F0FTableRelation object:
 		$relation = $table->getRelations()->getRelation($this->name, $relationType);
@@ -57,8 +57,9 @@ class F0FFormHeaderNnrelation extends F0FFormHeaderField
 
 			// Get the Items
 			$db = JFactory::getDbo();
-			$q  = $db->getQuery(true);
-			$q->select('o.*')->from($db->qn($optionsTableName) . ' as o');
+			$q  = $db
+				->getQuery(true)
+				->select('o.*')->from($db->qn($optionsTableName) . ' as o');
 
 			// Should we count and show related items?
 			if ($countAndShowRelated)
@@ -68,7 +69,7 @@ class F0FFormHeaderNnrelation extends F0FFormHeaderField
 				$q->group($db->qn('o.' . $relation['remoteKey']));
 			}
 
-			// 2Do: Language-filtering?
+			// todo Language-filtering?
 
 			$dbOptions = $db->setQuery($q)->loadObjectList($relation['remoteKey']);
 		}
