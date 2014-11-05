@@ -22,8 +22,9 @@ class FoobarDispatcher extends F0FDispatcher
   {
     // Add multiple to multiple relations support
     jimport('f0f-nnrelation.fields.nnrelation');
-    jimport('f0f-nnrelation.models.behaviors.nnrelation');
-    jimport('f0f-nnrelation.tables.behaviors.nnrelation');
+    jimport('f0f-nnrelation.fields.header.nnrelation');
+    jimport('f0f-nnrelation.models.nnrelation');
+    jimport('f0f-nnrelation.tables.nnrelation');
     
     return parent::onBeforeDispatch();
   }

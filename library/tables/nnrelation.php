@@ -31,8 +31,8 @@ class F0FTableBehaviorNnrelation extends F0FTableBehavior
 			// Only if it is a multiple relation, sure!
 			if ($relation['type'] == 'multiple')
 			{
-				// Retrive the fully qualified relation data from F0FTableRelations object
-				$relation = array_merge($relation['itemName'], $table->getRelations()->getRelation($relation['itemName'], $relation['type']));
+				// Be sure all parameters are ready, of follow conventions to build they
+				self::normaliseParameters($relation, $table);
 
 				// Deduce the name of the field used in the form
 				$field_name = F0FInflector::pluralize($relation['itemName']);
@@ -102,5 +102,52 @@ class F0FTableBehaviorNnrelation extends F0FTableBehavior
 		}
 
 		return true;
+	}
+
+	/**
+	 * Normalise the parameters of a relation, to be sure all fields are present.
+	 * If not yet present, create all missing fields following F0F conventions.
+	 *
+	 * @param object   $relation The relation onto check parameters.
+	 * @param F0Ftable $table    The current table.
+	 */
+	public static function normaliseParameters(&$relation, F0Ftable &$table)
+	{
+		// Pivot table name
+		if (empty($relation['pivotTable']))
+		{
+			$relation['pivotTable'] = $table->getTableName() . '_' . F0FInflector::pluralize($relation['itemName']);
+		}
+
+		// Our pivot key and local key
+		if (empty($relation['ourPivotKey']) || empty($relation['localKey']))
+		{
+			$relation['ourPivotKey'] = $relation['localKey'] = $table->getKeyName();
+		}
+		elseif (empty($relation['ourPivotKey']))
+		{
+			$relation['ourPivotKey'] = $relation['localKey'];
+		}
+		elseif (empty($relation['localKey']))
+		{
+			$relation['localKey'] = $relation['ourPivotKey'];
+		}
+
+		// Their pivot key and remote key
+		if (empty($relation['theirPivotKey']) || empty($relation['remoteKey']))
+		{
+			$table_parts    = F0FInflector::explode($table->getTableName());
+			$pivot_key_name = $table_parts[2] . '_' . F0FInflector::singularize($relation['itemName']) . '_id';
+
+			$relation['theirPivotKey'] = $relation['remoteKey'] = $pivot_key_name;
+		}
+		elseif (empty($relation['ourPivotKey']))
+		{
+			$relation['theirPivotKey'] = $relation['remoteKey'];
+		}
+		elseif (empty($relation['localKey']))
+		{
+			$relation['remoteKey'] = $relation['theirPivotKey'];
+		}
 	}
 }
