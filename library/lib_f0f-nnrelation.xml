@@ -2,16 +2,16 @@
 <extension type="library"
            version="3.0"
            method="upgrade">
-	<name>F0F NN-Relation</name>
+	<name>FOF NN-Relation</name>
 	<libraryname>f0f-nnrelation</libraryname>
-	<description>F0F (Framework on Framework) support for many-to-many relations.</description>
-	<creationDate>05 November 2014</creationDate>
+	<description>FOF (Framework on Framework) support for many-to-many relations.</description>
+	<creationDate>11 November 2014</creationDate>
 	<author>Federico Liva</author>
 	<authorEmail>hello@federicoliva.info</authorEmail>
 	<authorUrl>http://www.federicoliva.info</authorUrl>
 	<copyright>(C) 2014 Federico Liva</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-	<version>1.1.0</version>
+	<version>1.2.0</version>
 	<packager>Federico Liva</packager>
 	<packagerurl>https://www.federicoliva.info</packagerurl>
 
