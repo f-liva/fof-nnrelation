@@ -71,7 +71,7 @@ In the front-end of your component you want to retrieve your multiple relations 
 </view>
 ```
 
-Now in your views, the `$this->items` data object will contains a property named as the relation.
+Now in your list views, the `$this->items` data object will contains a property named as the relation. Instead, you will have `$this->item` in a item view.
 
 ```
 stdClass Object
