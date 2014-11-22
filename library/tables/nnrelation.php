@@ -25,6 +25,12 @@ class F0FTableBehaviorNnrelation extends F0FTableBehavior
 		$key       = $table->getConfigProviderKey() . '.relations';
 		$relations = $table->getConfigProvider()->get($key, array());
 
+		// Abandon the process if not a save task
+		if (!in_array($input->getWord('task'), array('apply', 'save', 'savenew')))
+		{
+			return true;
+		}
+
 		// For each relation check relative field
 		foreach ($relations as $relation)
 		{
